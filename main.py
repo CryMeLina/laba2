@@ -23,6 +23,24 @@ def search_dates(text):
     """Поиск всех дат в произвольном тексте."""
     return re.findall(COMBINED_PATTERN, text)
 
+
+def additional_verification(txt: str):
+    if "/" in txt:
+        res = txt.split("/")
+    if "." in txt:
+        res = txt.split("/")
+    if "-" in txt:
+        res = txt.split("/")
+    count = 0
+    for _ in txt:
+        if _ > 100:
+            count+=1
+    if count > 2:
+        return "Bad date"
+    else:
+        return "normal date"
+            
+            
 def search_in_file(filepath):
     """Поиск дат в локальном файле."""
     try:
